@@ -1,0 +1,48 @@
+class Solution {
+    public int[][] merge(int[][] interval) {
+         first we have to sort the array 
+        
+       
+        for(int i=0;iinterval.length-1;i++){
+             int flag=0;
+            for(int j=0;jinterval.length-1;j++){
+                
+                if(interval[j][0]interval[j+1][0]){
+                    
+                    int temp[]=new int[2];
+                    temp[0]=interval[j][0];
+                    temp[1]=interval[j][1];
+                    
+                    interval[j][0]=interval[j+1][0];
+                    interval[j][1]=interval[j+1][1];
+                    interval[j+1][0]=temp[0];
+                    interval[j+1][1]=temp[1];
+                        flag=1;
+                }
+                
+            }
+            
+            if(flag==0){
+                
+                break;
+            }
+        }
+        List int[] ls=new ArrayList();
+        int currin[]=interval[0];
+        ls.add(currin);
+        for(int i=0;iinterval.length;i++){
+                if(interval[i][0]=currin[1]){
+                    currin[1]=Math.max(currin[1],interval[i][1]);
+                }else{
+                    
+                    currin=interval[i];
+                    ls.add(currin);
+                }
+                
+            
+        }
+        
+        return ls.toArray(new int [ls.size()][]);
+        
+    }
+}
