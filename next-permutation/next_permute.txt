@@ -1,0 +1,39 @@
+class Solution {
+    public void nextPermutation(int[] nums) {
+        int n=nums.length;
+        int prelarge=n-1;
+        for (int i =n-2;i>=0;i--){
+            if(nums[i]>=nums[prelarge]){
+                prelarge=i;
+            }
+            else{
+                break;
+            }
+        }
+        
+        
+        
+        if(prelarge!=0){
+            int nextmax=prelarge;
+            for(int i=prelarge+1;i<n;i++){
+                if(nums[i]>nums[prelarge-1] && nums[i]<nums[nextmax]){
+                    nextmax=i;
+                  
+                    
+                }
+            }
+              int temp=nums[prelarge-1];
+                    nums[prelarge-1]=nums[nextmax];
+                    nums[nextmax]=temp;
+                    Arrays.sort(nums,prelarge,n);
+            
+        }else{
+            
+            Arrays.sort(nums);
+        }
+        
+        for(int a:nums){
+            System.out.print(a);
+        }
+    }
+}
