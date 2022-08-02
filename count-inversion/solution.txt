@@ -1,0 +1,60 @@
+
+//User function Template for Java
+
+class Solution
+{
+    // arr[]: Input Array
+    // N : Size of the Array arr[]
+    //Function to count inversions in the array.
+    static long inversionCount(long arr[], long N)
+    {
+      long l = (long)0;
+      long temp[]=new long[arr.length];
+      long ans =mergesort(arr,temp,l,N-1);
+      return ans;
+    }
+    
+    static long mergesort(long arr[],long temp[] ,long l,long r){
+       long inv=0;
+       long mid=0;
+       if(l<r){
+        mid=(l+r)>>1;
+        inv+=mergesort(arr,temp,l,mid);
+        inv+=mergesort(arr,temp,mid+1,r);
+        inv+=merge(arr,temp,l,mid+1,r);   
+       }
+        return inv;
+        
+    }
+    static long merge(long arr[],long temp[],long l,long mid,long r){
+   
+        int i=(int)l;
+        int j=((int)mid);
+        int k=(int)l;
+        long count=0;
+        
+        while(i<=(mid-1) && j<=r ){
+            if(arr[i]<=arr[j]){
+                temp[k]=arr[i];
+                k++;i++;
+            }else{
+                temp[k++]=arr[j++];
+                count+=(mid-i);
+            }
+            
+        }
+        
+        while(i<=mid-1){
+            
+            temp[k++]=arr[i++];
+        }
+        while(j<=r){
+            temp[k++]=arr[j++];
+        }
+        
+          for(i=(int)l;i<=r;i++){
+            arr[i]=temp[i];
+          }
+        return count;
+    }
+}
