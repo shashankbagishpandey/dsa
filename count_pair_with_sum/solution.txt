@@ -1,0 +1,28 @@
+
+class Solution {
+    int getPairsCount(int[] arr, int n, int k) {
+
+        HashMap<Integer,Integer> map=new HashMap<>();
+        
+        int count=0;
+        for(int i=0;i<n;i++){
+            int sum=k-arr[i];
+
+            if( map.containsKey(sum)){
+                count=count+map.get(sum);
+            }
+            
+            //here we r checking key exist or not as if key is not  exist then it value is null
+            if(map.get(arr[i])==null){
+               map.put(arr[i],0);
+                
+            }
+      //always add key and value to the map  which we get frm array and also update occurance of value      
+       map.put(arr[i],map.get(arr[i])+1);
+            
+        }
+        
+        
+        return count;
+    }
+}
