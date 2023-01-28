@@ -8,7 +8,7 @@ public class longestKuniqueCharSubStr {
     }
 
     public static int longestkSubstr(String s, int k) {
-        // code here
+
 
         HashMap<Character,Integer> map=new HashMap<>();
 
